@@ -1,35 +1,34 @@
-pipeline{
-  agent any
-  stages {
-    stage('Clone repository') {
-      steps {
-        checkout([$class: 'GitSCM',
-                  branches: [[name: '*/main']],
-                  userRemoteConfigs: [[url: 'https://github.com/NidhiPandukalGururaj/PES1UG21CS380_Jenkins.git']]])
-      }
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'g++ prg1.cpp -o output'
+                 build job: 'PES1UG21CS380-1', wait: false
+                 echo 'Build  successful'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh './output'
+                echo 'Test  successful'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+               
+                 echo 'Deploy 3 successful'
+            }
+        }
     }
-    stage('Build') {
-      steps{
-        build 'PES1UG21CS380-1'
-        sh 'g++ prg1.cpp -o output'
-      }
+
+    post {
+        failure {
+            
+                error 'Pipeline Failed'
+          
+        }
     }
-    stage('Test') {
-      steps {
-        sh './output'
-      }
-    }
-    stage('Deploy') {
-      steps{
-        echo 'deploy'
-      }
-    }
-  }
-  post {
-    failure{
-      error 'Pipeline failed'
-    }
-  }
-  
-        
-    
+}
