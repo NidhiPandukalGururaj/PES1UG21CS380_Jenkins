@@ -1,11 +1,11 @@
 pipeline{
   agent any
   stages {
-    stage('Clone Repository') {
+    stage('Clone repository') {
       steps {
         checkout([$class: 'GitSCM',
                   branches: [[name: '*/main']],
-                  userRemoteConfig: [[url: 'https://github.com/NidhiPandukalGururaj/PES1UG21CS380_Jenkins.git']]])
+                  userRemoteConfigs: [[url: 'https://github.com/NidhiPandukalGururaj/PES1UG21CS380_Jenkins.git']]])
       }
     }
     stage('Build') {
