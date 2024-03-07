@@ -19,7 +19,7 @@ pipeline {
         stage('Test') { 
             steps {
                 echo "This is Test stage." 
-                sh './output'
+                sh './outputt'
                 echo "Test Stage Successful"
             }
         }
