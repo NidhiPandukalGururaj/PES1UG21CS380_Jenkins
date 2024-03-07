@@ -1,34 +1,31 @@
 pipeline {
-    agent any
+    agent any 
     stages {
-        stage('Build') {
+        stage('Build') { 
             steps {
-                sh 'g++ prg1.cpp -o output'
-                 build job: 'PES1UG21CS380-1', wait: false
-                 echo 'Build  successful'
+                echO "This is Build stage."
+                build 'PES1UG21CS380-1'
+                sh 'g++ ./main/prg1.cpp -o output'
+                echo "Build Stage Successful"
             }
         }
-
-        stage('Test') {
+        stage('Test') { 
             steps {
+                echo "This is Test stage." 
                 sh './output'
-                echo 'Test  successful'
+                echo "Test Stage Successful"
             }
         }
-
-        stage('Deploy') {
+        stage('Deploy') { 
             steps {
-               
-                 echo 'Deploy 3 successful'
+                echo "This is Deploy stage."
+                echo "Deployment Success"
             }
         }
     }
-
-    post {
-        failure {
-            
-                error 'Pipeline Failed'
-          
+    post{
+        failure{
+            error 'Pipeline Failed'
         }
     }
 }
