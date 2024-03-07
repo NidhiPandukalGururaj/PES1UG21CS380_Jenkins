@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echO "This is Build stage."
                 build 'PES1UG21CS380-1'
-                sh 'g++ prg1.cpp -o output'
+                sh 'gcc prg1.c -o output'
                 echo "Build Stage Successful"
             }
         }
